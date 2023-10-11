@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { 
+  Container,
+  Button,
+} from 'react-bootstrap';
+import ModalTask from './components/ModalTask';
+import TableTask from './components/TableTask';
+import Filter from './components/Filter';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = () => setShowModal(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <h1>Task list</h1>
+      <Button variant="primary" onClick={handleShowModal}>
+        add task
+      </Button>
+      <Filter />
+      <TableTask handleShowModal={handleShowModal}/>
+      <ModalTask showModal={showModal} setShowModal={setShowModal}/>
+    </Container>
   );
 }
 
